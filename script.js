@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const repoContainer = document.getElementById("repo-list");
   const repoSelect = document.getElementById("chat-tool");
   const chatThread = document.getElementById("chat-thread");
-
   const webhookURL = "https://discord.com/api/webhooks/1397959413444247622/2oFW8EBV_8mhQrIsIHVoAV4X3A4Ps2epxtnYQU1ShKdHvnp-kU-ScNVJEkFPsqC8-vP8";
 
   fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(repos => {
       repos.filter(r => !r.fork).slice(0, 10).forEach(repo => {
         const card = document.createElement("div");
-        card.className = "card-glow bg-black bg-opacity-30 p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl";
+        card.className = "card-glow bg-black bg-opacity-30 p-6 rounded-xl shadow-lg";
         card.innerHTML = `
           <h3 class="text-xl font-semibold mb-2">${repo.name}</h3>
           <p class="text-gray-300 mb-3">${repo.description || "No description"}</p>
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const content = `Username: ${user}\nTool: ${tool}\nMessage: ${msg}`;
+    const content = `Username: ${user}\nTool: ${tool}\n${msg}`;
 
     try {
       await fetch(webhookURL, {
@@ -52,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content })
       });
+
       status.textContent = "✅ Message sent!";
       status.classList.remove("hidden", "text-red-400");
       status.classList.add("text-green-400");
@@ -64,4 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => status.classList.add("hidden"), 2500);
   });
+
+  // ⏱ Poll ticket updates from bot every 5s
+  setInterval(async () => {
+    const user = document.getElementById("chat-username").value.trim();
+    if (!user) return;
+
+    const res = await fetch(`http://YOUR_BOT_HOST/api/ticket/${user}`);
+    const messages = await res.json();
+
+    const thread = document.getElementById("chat-thread");
+    thread.innerHTML = messages.map(m =>
+      `<div class="mb-1"><strong>${m.username}:</strong> ${m.content}</div>`
+    ).join("");
+  }, 5000);
 });
