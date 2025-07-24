@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const user = document.getElementById("chat-username").value.trim();
     if (!user) return;
 
-    const res = await fetch(`http://YOUR_BOT_HOST/api/ticket/${user}`);
+    const res = await fetch(`http://prem-eu3.bot-hosting.net:20261/api/ticket/${user}`);
     const messages = await res.json();
 
     const thread = document.getElementById("chat-thread");
