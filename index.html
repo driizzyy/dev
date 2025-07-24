@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer DriizzyyB | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .bg-gradient {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    }
+    .chat-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .card-glow {
+      transition: all 0.3s ease-in-out;
+    }
+    .card-glow:hover {
+      box-shadow: 0 0 25px rgba(255, 80, 80, 0.8), 0 0 50px rgba(255, 80, 80, 0.6);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .glow-button:hover {
+      box-shadow: 0 0 18px rgba(255,80,80,0.7), 0 0 36px rgba(255,80,80,0.4);
+      transform: scale(1.06);
+      transition: all 0.2s ease;
+    }
+    .rainbow-glow {
+      border-radius: 1rem;
+      box-shadow:
+        0 0 5px red,
+        0 0 10px orange,
+        0 0 15px yellow,
+        0 0 20px green,
+        0 0 25px blue,
+        0 0 30px indigo,
+        0 0 35px violet;
+      animation: rainbowPulse 3s linear infinite;
+    }
+    @keyframes rainbowPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 5px red,
+          0 0 10px orange,
+          0 0 15px yellow,
+          0 0 20px green,
+          0 0 25px blue,
+          0 0 30px indigo,
+          0 0 35px violet;
+      }
+      50% {
+        box-shadow:
+          0 0 10px red,
+          0 0 15px orange,
+          0 0 20px yellow,
+          0 0 25px green,
+          0 0 30px blue,
+          0 0 35px indigo,
+          0 0 40px violet;
+      }
+    }
+  </style>
+</head>
+<body class="text-white bg-gradient font-sans">
+  <header class="relative text-center py-12 bg-black bg-opacity-50 shadow-lg">
+    <img src="assets/banner.gif" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-20 z-0">
+    <div class="relative z-10">
+      <img src="assets/avatar.gif" alt="Your Avatar" class="w-28 h-28 rounded-full mx-auto border-4 border-white shadow-md">
+      <h1 class="text-5xl font-extrabold tracking-tight mt-4">DriizzyyB</h1>
+      <p class="text-gray-300 text-lg">Developer • Designer • Builder</p>
+    </div>
+  </header>
+  <section id="hero" class="p-10 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-6">Welcome to My custom Website!</h2>
+    <p class="text-lg max-w-3xl mx-auto text-gray-200">I'm passionate about coding, community building, and creating intuitive tools for others. Explore my projects, communities, and reach out directly below.</p>
+  </section>
+  <section id="discord" class="p-10" data-aos="fade-right">
+    <h2 class="text-3xl font-bold text-center mb-8">My Discord Servers</h2>
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg transition card-glow">
+        <img src="assets/discord1.gif" class="w-12 h-12 mb-3" alt="Server Icon">
+        <h3 class="text-xl font-semibold mb-1">Driizzyy Boosts</h3>
+        <p class="text-gray-300 text-sm">My Discord Server where you can buy CHEAP and reliable Discord boosting services.</p>
+        <a href="https://discord.gg/uJp8R66SUS" target="_blank" class="inline-block mt-2 text-blue-400 hover:underline">Join Server</a>
+      </div>
+      <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg transition card-glow">
+        <img src="assets/discord2.gif" class="w-12 h-12 mb-3" alt="Server Icon">
+        <h3 class="text-xl font-semibold mb-1">Driizzyys Hangout</h3>
+        <p class="text-gray-300 text-sm">A place for casual gaming, tech discussions, and chill vibes. 18+ ONLY!</p>
+        <a href="https://discord.gg/B377GSR627" target="_blank" class="inline-block mt-2 text-blue-400 hover:underline">Join Server</a>
+      </div>
+    </div>
+  </section>
+  <section id="repos" class="p-10" data-aos="fade-left">
+    <h2 class="text-3xl font-bold text-center mb-8">Highlighted GitHub Repositories</h2>
+    <div id="repo-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    </div>
+  </section>
+  <footer class="text-center p-10 text-gray-400 text-sm border-t border-white border-opacity-10">
+    <p>&copy; <span id="year"></span> <a href="https://github.com/driizzyy" class="text-blue-400 hover:underline">@driizzyy</a> — Crafted with ❤️ using Github Pages + TailwindCSS + DiscordJS</p>
+  </footer>
+  <div id="chat-button" class="fixed bottom-6 right-6 z-50">
+    <button class="bg-blue-600 w-14 h-14 rounded-full shadow-lg glow-button flex items-center justify-center">
+      💬
+    </button>
+  </div>
+  <div id="chat-box" class="hidden fixed bottom-24 right-6 w-96 bg-black bg-opacity-90 p-6 rounded-xl shadow-xl z-50 rainbow-glow">
+    <h4 class="text-xl font-semibold mb-3">Support Chat</h4>
+    <div id="chat-thread" class="chat-scroll text-sm bg-gray-900 rounded p-2 mb-3 space-y-2 h-64 overflow-y-scroll"></div>
+    <input id="chat-username" type="text" placeholder="Your Discord username" class="mb-2 w-full p-2 rounded bg-gray-800 text-white text-sm" />
+    <select id="chat-tool" class="mb-2 w-full p-2 rounded bg-gray-800 text-white text-sm">
+      <option value="">Select a tool or repo</option>
+    </select>
+    <textarea id="chat-message" rows="2" placeholder="Type your message..." class="mb-2 w-full p-2 rounded bg-gray-800 text-white text-sm"></textarea>
+    <button id="send-chat" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full text-sm glow-button">Send</button>
+    <p id="chat-status" class="text-xs text-green-400 mt-2 hidden">Message sent!</p>
+  </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
